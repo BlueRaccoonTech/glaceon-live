@@ -1,0 +1,84 @@
+{#
+    Note to self: Important blocks follow:
+        - additional_css: Additional CSS goes here.
+        - additional_js: Additional javascript goes here.
+        - background: A CSS statement for the background goes here - image or otherwise.
+        - main_content: All main content for the webpage.
+        - title: Title of the webpage.
+        - footer_bar: Footer bar. Can make another bar to replace or blank out completely.
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}glaceon.live{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/site.css" />
+
+    {% block additional_css %}{% endblock %}
+</head>
+
+<body style="{% block background %}background-image:url('/static/img/glaceon-bg-blurred.png');{% endblock %} background-size: cover;background-attachment: fixed;min-height: 100%;">
+<!-- BEGIN NAVIGATION BAR -->
+<nav class="navbar navbar-expand-md navbar-dark border-bottom border-dark shadow-lg" style="background-color: #2b74af;">
+    <a class="navbar-brand" href="/">
+        <img src="/static/img/glaceon-icon.png" height="50px">
+        <img src="/static/img/glace_live_light.svg" height="40px" alt="glaceon.live">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Streamers
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/stream/frinkel">Frinkel</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- END NAVIGATION BAR -->
+<div class="container">
+    <div class="main_content"><br />
+        {% block main_content %}{% endblock %}
+    </div>
+</div>
+
+{% block footer_bar %}
+<nav class="navbar fixed-bottom navbar-dark bg-dark border-top border-dark shadow-lg">
+    <a class="text-muted" href="https://frinkel.tech"><em>A project by Blue Raccoon Technologies</em></a>
+</nav>
+{% endblock %}
+
+<!-- BEGIN BOOTSTRAP JS --->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- END BOOTSTRAP JS -->
+
+{% block additional_js %}{% endblock %}
+
+</body>
+</html>

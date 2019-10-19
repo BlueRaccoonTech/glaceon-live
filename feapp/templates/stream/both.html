@@ -1,0 +1,48 @@
+{% extends "shared/_layout.html" %}
+{% block title %}{{ displayName }}'s Stream - glaceon.live{% endblock %}
+{% block background %}background-image:url('{{ background }}');{% endblock %}
+{% block additional_css %}<link rel="stylesheet" href="/static/css/apparatus.css" type="text/css" />{% endblock %}
+{% block additional_js %}
+    <script type="text/javascript">
+        var streamer = "{{ username }}";
+    </script>
+    <script src="/static/js/apparatus/mux.js"></script>
+    <script src="/static/js/apparatus/shaka-player.compiled.js"></script>
+    <script src="/static/js/apparatus/shaka-player.ui.js"></script>
+    <script src="/static/js/apparatus/stream.js"></script>
+    <script src="/static/js/apparatus/converse.min.js"></script>
+    <script src="/static/js/apparatus/chat.js"></script>
+{% endblock %}
+{% block footer_bar %}{% endblock %}
+{% block main_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-9 col-lg-8">
+                <div class="card bg-light shadow mt-5 mb-xl-5 mb-lg-5 mb-0">
+                    <div class="card-body clearfix" style="background-color: #e9fdff;">
+                        <h2 class="card-title">{{ displayName }}'s Stream {% if isStreaming %}<span class="badge badge-danger">Live</span>{% else %}<span class="badge badge-secondary">Offline</span>{% endif %}</h2>
+                        <div class="mb-3" id="shaka-mount-point">
+                            <video id="video"></video>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <img src="{{ avatar }}" alt="{{ displayName }}'s avatar" width="64px" height="auto" class="img-thumbnail rounded float-left mr-3" >
+                                <h5 class="card-text ml-2">{{ username }}</h5>
+                                <p class="card-text ml-2"><em>{{ tagline }}</em></p>
+                            </div>
+                        </div>
+                        <p class="card-text" style="text-align:justify;">{{ description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3 col-lg-4">
+                <div class="convcont card bg-dark shadow text-center mt-5 mb-sm-5 mb-md-5">
+                    <div class="card-body p-0">
+                        <div class="chat" id="conversejs" style="height:75vh;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

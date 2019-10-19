@@ -1,0 +1,95 @@
+video {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+.shaka-video-container {
+	width: 100%;
+	position: relative;
+}
+body.stream-only .shaka-video-container {
+	width: 100vw;
+	height: calc((100vw) * (9 / 16));
+	position: relative;
+	top: calc((100vh - ((100vw) * (9 / 16))) / 2);
+}
+#conversejs.chat {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	left: initial;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	--chatroom-head-color: #009688;
+	--chatbox-border-radius: 0;
+}
+
+#conversejs .col-md-9 {
+	flex: 0 0 100%;
+	max-width: 100% !important;
+}
+#conversejs .message.chat-msg.chat-msg--followup .chat-msg__content {
+	margin-left: .5rem;
+}
+.chatroom-body, .chat-content, .chat-toolbar, .chat-textarea, .chatroom-form-container, .converse-form, .form-control, .separator-text {
+    background-color: #1A2327 !important;
+    color: #ECEFF1 !important;
+}
+.btn-primary {
+	background: #009688 !important;
+	color: #FFF !important;
+	opacity: 0.7;
+	transition: opacity 0.4s !important;
+}
+.btn-primary:hover {
+	opacity: 1;
+}
+.chat-msg__text {
+    color: inherit !important;
+    opacity: 0.8;
+}
+.chat-msg__time {
+    color: inherit !important;
+    opacity: 0.5;
+}
+.far:before {
+	font-family: ConverseFontAwesomeRegular !important;
+}
+.fa:before, .fas:before {
+	font-family: ConverseFontAwesomeSolid !important;
+}
+.chat-msg.correcting {
+	background: #F44336 !important;
+}
+.material-icons {
+	font-family: 'Material Icons' !important;
+}
+.chat-msg {
+	padding: .125rem .5rem !important;
+}
+.toggle-occupants, .occupants, .chat-head, .avatar, .chat-msg__receipt, .chat-state-notification {
+	display: none !important;
+}
+body.stream-only.tall .shaka-video-container {
+	width: calc(100vw);
+	height: calc(100vw * (9 / 16));
+	top: calc((100vh - (100vw * (9 / 16))) / 2);
+}
+
+body.stream-only.wide .shaka-video-container {
+	width: calc(100vh * (16 / 9));
+	height: 100vh;
+	position: relative;
+	top: 0;
+	left: calc(((100vw) - (100vh * (16 / 9))) / 2);
+}
+.popout-chat {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	width: 100vw !important;
+	height: 100vh !important;
+}
