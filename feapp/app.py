@@ -21,8 +21,11 @@ def setup_db():
 def main():
     register_blueprints()
     setup_db()
-    app.run(debug=True)
+    app.run(debug=True, port=5006)
 
+def configure():
+    register_blueprints()
+    setup_db()
 
 def register_blueprints():
     from feapp.views import home_views
@@ -33,3 +36,5 @@ def register_blueprints():
 
 if __name__ == '__main__':
     main()
+else:
+    configure()
