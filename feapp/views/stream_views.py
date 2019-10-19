@@ -81,3 +81,15 @@ def endstream(streamer: str):
     else:
         streamer_service.markstopped(streamer.username)
         return flask.Response("", status=201)
+
+
+@blueprint.route('/api/v1/changekey/<string:streamer>', methods=['POST'])
+def streamKeyChangeRoute(streamer: str):
+    data = request_dict.create(default_val='')
+    authkey = data.name.strip()
+    streamer = streamer_service.authenticate_streamer(streamer, authkey)
+    if not streamer:
+        return flask.abort(404)
+    else:
+        newkey = streamer_service.changeKey(streamer.username)
+        return flask.Response('{}'.format(newkey), status=200)

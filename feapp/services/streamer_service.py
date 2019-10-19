@@ -2,6 +2,7 @@ import feapp.data.db_session as db_session
 from feapp.data.users import User
 from feapp.data.userData import UserData
 from feapp.data.userKeys import UserKeys
+import feapp.data.userKeys as keyUtils
 from passlib.handlers.sha2_crypt import sha512_crypt as crypto
 
 streamer_db = {
@@ -46,7 +47,7 @@ def get_streamer_privdat(user: str) -> User:
 
 
 # A wrapper to get_streamer that returns nothing if the authkey doesn't match.
-def authenticate_streamer(user: str, authkey: str) -> dict:
+def authenticate_streamer(user: str, authkey: str) -> User:
     if not user:
         return {}
     session = db_session.create_session()
@@ -64,11 +65,18 @@ def markstarted(username: str):
     streamer = session.query(User).filter(User.username == username).first()
     streamer.is_streaming = True
     session.commit()
-    return None
+
 
 def markstopped(username: str):
     session = db_session.create_session()
     streamer = session.query(User).filter(User.username == username).first()
     streamer.is_streaming = False
     session.commit()
-    return None
+
+
+def changeKey(username:str) -> str:
+    session = db_session.create_session()
+    streamer = session.query(UserKeys).filter(UserKeys.username == username).first()
+    streamer.streamingKey = keyUtils.genstreamkey()
+    session.commit()
+    return streamer.streamingKey
