@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var converseCfg = {
         view_mode: "embedded",
 	anonymous: true,
-	jid: "live.frinkel.tech",
+	jid: "glaceon.live",
 	auto_login: true,
 	allow_logout: false,
 	auto_reconnect: true,
@@ -16,15 +16,15 @@ var converseCfg = {
 	use_system_emojis: false,
 	synchronize_availability: false,
 	authentication: "anonymous",
-	auto_join_rooms: [ {jid:streamer+"@muc-live.frinkel.tech"}],
+	auto_join_rooms: [ {jid:streamer+"@muc.glaceon.live"}],
 	blacklisted_plugins: [
 		"converse-notification",
 		"converse-fullscreen",
 	]
 };
 if (window.location.hash !== "#bosh") {
-	converseCfg.websocket_url = "wss://live.frinkel.tech/xmpp/websocket";
+	converseCfg.websocket_url = "wss://glaceon.live/xmpp/websocket";
 }
-converseCfg.bosh_service_url = "https://live.frinkel.tech/xmpp/bosh";
+converseCfg.bosh_service_url = "https://glaceon.live/xmpp/bosh";
 converse.initialize(converseCfg);
 });
