@@ -93,3 +93,16 @@ def streamKeyChangeRoute(streamer: str):
     else:
         newkey = streamer_service.changeKey(streamer.username)
         return flask.Response('{}'.format(newkey), status=200)
+
+
+@blueprint.route('/api/v1/changetagline/<string:streamer>', methods=['POST'])
+def taglineChangeRoute(streamer: str):
+    data = request_dict.create(default_val='')
+    authkey = data.name.strip()
+    tagline = data.tagline.strip()
+    streamer = streamer_service.authenticate_streamer(streamer, authkey)
+    if not streamer:
+        return flask.abort(404)
+    else:
+        streamer_service.changeTagline(streamer.username, tagline)
+        return flask.Response("", status=200)

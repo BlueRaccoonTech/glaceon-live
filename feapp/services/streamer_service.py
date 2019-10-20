@@ -74,9 +74,16 @@ def markstopped(username: str):
     session.commit()
 
 
-def changeKey(username:str) -> str:
+def changeKey(username: str) -> str:
     session = db_session.create_session()
     streamer = session.query(UserKeys).filter(UserKeys.username == username).first()
     streamer.streamingKey = keyUtils.genstreamkey()
     session.commit()
     return streamer.streamingKey
+
+
+def changeTagline(username: str, tagline: str):
+    session = db_session.create_session()
+    streamer = session.query(UserData).filter(UserData.username == username).first()
+    streamer.tagline = tagline
+    session.commit()
