@@ -106,3 +106,17 @@ def taglineChangeRoute(streamer: str):
     else:
         streamer_service.changeTagline(streamer.username, tagline)
         return flask.Response("", status=200)
+      
+
+@blueprint.route('/api/v1/changebackground/<string:streamer>', methods=['POST'])
+def backgroundChangeRoute(streamer: str):
+    # TODO: Implement a way to upload a background through this API endpoint.
+    data = request_dict.create(default_val='')
+    authkey = data.name.strip()
+    bg = data.bg.strip()
+    streamer = streamer_service.authenticate_streamer(streamer, authkey)
+    if not streamer:
+        return flask.abort(404)
+    else:
+        streamer_service.changeBackground(streamer.username, bg)
+        return flask.Response("Changed background to {}".format(bg), status=200)
