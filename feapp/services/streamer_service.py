@@ -87,3 +87,13 @@ def changeTagline(username: str, tagline: str):
     streamer = session.query(UserData).filter(UserData.username == username).first()
     streamer.tagline = tagline
     session.commit()
+
+
+def changeBackground(username: str, background: str):
+    session = db_session.create_session()
+    streamer = session.query(UserData).filter(UserData.username == username).first()
+    # Set background to default if none is provided
+    if background == '':
+        background = '/static/img/glaceon-bg-blurred.png'
+    streamer.background = background
+    session.commit()
